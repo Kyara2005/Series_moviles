@@ -12,9 +12,22 @@
         <h2>{{ serie.titulo }}</h2>
         <img [src]="serie.portada" alt="{{ serie.titulo }}" style="max-width: 100px; max-height: 100px; justify-items: center;">
         <p>{{ serie.categoria }}</p>
-        <p>{{ serie.descripcion }}</p>
-        <a href="{{ serie.link_referencia }}" target="_blank">Más información</a>
-        
+        <p>{{ serie.descripcion }}</p>         
+        <ion-button
+        *ngIf="serie.link_referencia"
+        (click)="mostrarVideo(serie.link_referencia)">
+          Ver trailer
+        </ion-button>
+
+        <div *ngIf="videoUrl === serie.link_referencia">
+          <iframe
+            width="100%"
+            height="200"
+            [src]="getVideoUrl(serie.link_referencia)"
+            frameborder="0"
+            allowfullscreen>
+          </iframe>
+        </div>
       </ion-label>
 
       <div class="acciones">

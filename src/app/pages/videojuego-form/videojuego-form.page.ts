@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent,
-  IonItem, IonLabel, IonInput, IonButton
+  IonItem, IonLabel, IonInput, IonButton, IonTextarea
 } from '@ionic/angular/standalone';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VideojuegosService, Videojuego } from '../../services/videojuegos.page';
 
@@ -12,9 +12,9 @@ import { VideojuegosService, Videojuego } from '../../services/videojuegos.page'
   templateUrl: './videojuego-form.page.html',
   standalone: true,
   imports: [
-    FormsModule,
+    ReactiveFormsModule,FormsModule,
     IonHeader, IonToolbar, IonTitle, IonContent,
-    IonItem, IonLabel, IonInput, IonButton
+    IonItem, IonLabel, IonInput, IonButton, IonTextarea
   ]
 })
 export class VideojuegoFormPage implements OnInit {
