@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      {{ id ? 'Editar Videojuego' : 'Nuevo Videojuego' }}
+      {{ id ? 'Editar serie' : 'Nueva Serie' }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,39 +14,19 @@
     </ion-label>
 
     <ion-input
-      [(ngModel)]="videojuego.titulo">
+    name="titulo"
+    [(ngModel)]="videojuego.titulo">
     </ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="stacked">
-      Plataforma
+      Portada
     </ion-label>
 
     <ion-input
-      [(ngModel)]="videojuego.plataforma">
-    </ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="stacked">
-      Precio
-    </ion-label>
-
-    <ion-input
-      type="number"
-      [(ngModel)]="videojuego.precio">
-    </ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-label position="stacked">
-      Stock
-    </ion-label>
-
-    <ion-input
-      type="number"
-      [(ngModel)]="videojuego.stock">
+      name="portada"
+      [(ngModel)]="videojuego.portada">
     </ion-input>
   </ion-item>
 
@@ -56,7 +36,30 @@
     </ion-label>
 
     <ion-input
+      name="categoria"
       [(ngModel)]="videojuego.categoria">
+    </ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label position="stacked">
+      Descripción
+    </ion-label>
+
+    <ion-textarea
+      name="descripcion"
+      [(ngModel)]="videojuego.descripcion">
+    </ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">
+      Link de Referencia
+    </ion-label>
+
+    <ion-input
+      name="link_referencia"
+      [(ngModel)]="videojuego.link_referencia">
     </ion-input>
   </ion-item>
 

@@ -7,21 +7,22 @@
 <ion-content class="ion-padding">
 
   <ion-list>
-    <ion-item *ngFor="let juego of videojuegos" class="card-juego">
+    <ion-item *ngFor="let serie of videojuegos" class="card-juego">
       <ion-label>
-        <h2>{{ juego.titulo }}</h2>
-        <p>{{ juego.plataforma }} | {{ juego.categoria }}</p>
-        <p>Precio: ${{ juego.precio }} | Stock: {{ juego.stock }}</p>
-        <img [src]="juego.imagen_url" alt="{{ juego.titulo }}" style="max-width: 100px; max-height: 100px; justify-items: center;">
+        <h2>{{ serie.titulo }}</h2>
+        <img [src]="serie.portada" alt="{{ serie.titulo }}" style="max-width: 100px; max-height: 100px; justify-items: center;">
+        <p>{{ serie.categoria }}</p>
+        <p>{{ serie.descripcion }}</p>
+        <a href="{{ serie.link_referencia }}" target="_blank">Más información</a>
         
       </ion-label>
 
       <div class="acciones">
-        <ion-button [routerLink]="['/videojuegos-form', juego.id]">
+        <ion-button [routerLink]="['/videojuegos-form', serie.id]">
           Editar
         </ion-button>
 
-        <ion-button (click)="eliminar(juego.id!)">
+        <ion-button (click)="eliminar(serie.id!)">
           Eliminar
         </ion-button>
       </div>
