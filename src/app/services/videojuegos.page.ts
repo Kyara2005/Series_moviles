@@ -6,6 +6,8 @@ export interface Videojuego {
   id?: number;
   titulo: string;
   portada: string;
+  imagen?: string;
+  audio?: string;
   categoria?: string;
   descripcion?: string;
   link_referencia?: string;
@@ -75,4 +77,42 @@ export class VideojuegosService {
 
     if (error) throw error;
   }
+
+  async subirImagen(file: File): Promise<string> {
+
+    const nombreArchivo = `${Date.now()}_${file.name}`;
+
+    const { error } = await this.supabase.storage
+      .from('imagenes')
+      .upload(nombreArchivo, file);
+
+    if (error) throw error;
+
+    const { data } = this.supabase.storage
+      .from('imagenes')
+      .getPublicUrl(nombreArchivo);
+
+    return data.publicUrl;
+  }
+
+
+  // SUBIR AUDIO
+  async subirAudio(file: File): Promise<string> {
+
+    const nombreArchivo =
+      `${Date.now()}_${file.name}`;
+
+    const { error } = await this.supabase.storage
+      .from('audios')
+      .upload(nombreArchivo, file);
+
+    if (error) throw error;
+
+    const { data } = this.supabase.storage
+      .from('audios')
+      .getPublicUrl(nombreArchivo);
+
+    return data.publicUrl;
+  }
+  
 }

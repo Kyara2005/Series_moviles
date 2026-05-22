@@ -11,6 +11,12 @@
       <ion-label>
         <h2>{{ serie.titulo }}</h2>
         <img [src]="serie.portada" alt="{{ serie.titulo }}" style="max-width: 100px; max-height: 100px; justify-items: center;">
+        <!-- AUDIO -->
+        <div *ngIf="serie.audio">
+          <audio controls [src]="serie.audio">
+            Tu navegador no soporta audio.
+          </audio>
+        </div>
         <p>{{ serie.categoria }}</p>
         <p>{{ serie.descripcion }}</p>         
         <ion-button
@@ -27,6 +33,28 @@
             frameborder="0"
             allowfullscreen>
           </iframe>
+        </div>
+
+        <!-- BOTÓN MOSTRAR -->
+        <ion-button
+          *ngIf="serie.imagen"
+          (click)="toggleImagen(serie.id!)"
+          color="secondary"
+        >
+          {{ imagenVisible === serie.id ? 'Ocultar Imagen' : 'Ver Imagen' }}
+        </ion-button>
+
+        <!-- IMAGEN -->
+        <div *ngIf="imagenVisible === serie.id">
+          <img
+            [src]="serie.imagen"
+            style="
+              width: 100%;
+              max-width: 300px;
+              margin-top: 10px;
+              border-radius: 10px;
+            "
+          >
         </div>
       </ion-label>
 

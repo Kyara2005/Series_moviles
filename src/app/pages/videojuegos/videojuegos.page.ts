@@ -29,6 +29,8 @@ export class VideojuegosPage implements OnInit {
 
   //Variable para el video
   videoUrl: string = '';
+  // imagen
+  imagenVisible: number | null = null;
 
   constructor(private videojuegosService: VideojuegosService, private sanitizer: DomSanitizer) {}
 
@@ -96,6 +98,18 @@ export class VideojuegosPage implements OnInit {
 
     return this.sanitizer
       .bypassSecurityTrustResourceUrl(embedUrl);
+
+  }
+
+
+  // MOSTRAR / OCULTAR IMAGEN
+  toggleImagen(id: number) {
+
+    if (this.imagenVisible === id) {
+      this.imagenVisible = null;
+    } else {
+      this.imagenVisible = id;
+    }
 
   }
 }

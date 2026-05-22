@@ -20,13 +20,17 @@ import { VideojuegosService, Videojuego } from '../../services/videojuegos.page'
 export class VideojuegoFormPage implements OnInit {
 
   id?: number;
+  imagenFile!: File;
+  audioFile!: File;
 
   videojuego: Videojuego = {
     titulo: '',
     portada: '',
+    imagen: '',
+    audio: '',
     categoria: '',
     descripcion: '',
-    link_referencia: ''
+    link_referencia: ''    
   };
 
   constructor(
@@ -44,7 +48,30 @@ export class VideojuegoFormPage implements OnInit {
     }
   }
 
+  seleccionarImagen(event: any) {
+  this.imagenFile = event.target.files[0];
+  }
+
+  seleccionarAudio(event: any) {
+    this.audioFile = event.target.files[0];
+  }
+  
+
   async guardar() {
+    // SUBIR IMAGEN
+    if (this.imagenFile) {
+      this.videojuego.imagen =
+        await this.videojuegosService
+          .subirImagen(this.imagenFile);
+    }
+
+    // SUBIR AUDIO
+    if (this.audioFile) {
+      this.videojuego.audio =
+        await this.videojuegosService
+          .subirAudio(this.audioFile);
+    }
+
     if (this.id) {
       await this.videojuegosService.actualizar(this.id, this.videojuego);
     } else {
